@@ -1,9 +1,9 @@
 package somelib
 
-import "strings"
+import "bytes"
 
-const check = "already exists"
+var check = []byte("already exists")
 
 func IsExistsErr(b []byte) bool {
-	return strings.Contains(string(b), check)
+	return bytes.Contains(b, check)
 }
