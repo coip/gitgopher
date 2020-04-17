@@ -23,6 +23,10 @@ var (
 			Dir:  repodir,
 		},
 		{
+			Args: []string{"go", "get"},
+			Dir:  repodir,
+		},
+		{
 			Args: []string{"go", "test"},
 			Dir:  repodir,
 		},
