@@ -86,6 +86,9 @@ func init() {
 	if srcgetter, err := exec.LookPath(gettherepo.Args[0]); err != nil {
 		log.Fatal(err)
 	} else {
+		if *verbose {
+			log.Printf("found srcgetter %s @ %s", gettherepo.Args[0], srcgetter)
+		}
 		gettherepo.Path = srcgetter
 	}
 
@@ -94,6 +97,9 @@ func init() {
 		binpath, err := exec.LookPath(tbinreq)
 		if err != nil {
 			log.Fatalf("task[%d] appears infeasible: which %s?", tid, tbinreq)
+		}
+		if *verbose {
+			log.Printf("found taskbin[%s] @ %s", tbinreq, binpath)
 		}
 		//assign the path for each task that depends on the current binreq
 		for _, taskID := range u[tbinreq] {
