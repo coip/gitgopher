@@ -9,7 +9,8 @@ import (
 	"path/filepath"
 
 	"log"
-	"strings"
+
+	"github.com/coip/gitgopher/somelib"
 )
 
 var (
@@ -113,14 +114,10 @@ func init() {
 
 }
 
-func isExistsErr(b []byte) bool {
-	return strings.Contains(string(b), "already exists")
-}
-
 func main() {
 
 	if out, err := gettherepo.CombinedOutput(); err != nil {
-		if isExistsErr(out) && *ephemeral {
+		if somelib.IsExistsErr(out) && *ephemeral {
 			if *force {
 				os.RemoveAll(repodir)
 				//and rerun, passing std{out,err} up to caller
